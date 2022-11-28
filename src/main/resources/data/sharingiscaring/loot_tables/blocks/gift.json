@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "owner",
+                  "target": "BlockEntityTag.owner"
+                },
+                {
+                  "op": "replace",
+                  "source": "target",
+                  "target": "BlockEntityTag.target"
+                },
+                {
+                  "op": "replace",
+                  "source": "items",
+                  "target": "BlockEntityTag.items"
+                }
+              ],
+              "source": "block_entity"
+            },
+            {
+              "type": "sharingiscaring:gift",
+              "entries": [
+                {
+                  "type": "minecraft:dynamic",
+                  "name": "minecraft:contents"
+                }
+              ],
+              "function": "minecraft:set_contents"
+            }
+          ],
+          "name": "sharingiscaring:gift"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
