@@ -2,5 +2,6 @@
   "block.sharingiscaring.gift": "gift",
   "sharingiscaring.owner": "from: %s",
   "sharingiscaring.target": "To: %s",
-  "sharingiscaring.message":  "This gift is not for you, it is from %s1 for %s2"
+  "sharingiscaring.message":  "This gift is not for you, it is from %1$s for %2$s",
+  "sharingiscaring.gift.menu":  "From %1$s to %2$s"
 }

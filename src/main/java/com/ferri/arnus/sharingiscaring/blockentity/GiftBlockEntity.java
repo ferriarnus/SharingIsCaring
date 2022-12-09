@@ -1,22 +1,41 @@
 package com.ferri.arnus.sharingiscaring.blockentity;
 
+import com.ferri.arnus.sharingiscaring.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
 public class GiftBlockEntity extends BlockEntity {
-    private final ItemStackHandler handler = new ItemStackHandler(5);
+    private final ItemStackHandler handler = new ItemStackHandler(5) {
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (stack.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent() || stack.is(BlockRegistry.GIFT_ITEM.get())) {
+                return stack;
+            }
+            return super.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+            if (stack.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent() || stack.is(BlockRegistry.GIFT_ITEM.get())) {
+                return;
+            }
+            super.setStackInSlot(slot, stack);
+        }
+    };
     private UUID owner;
     private UUID target;
 
@@ -59,7 +78,7 @@ public class GiftBlockEntity extends BlockEntity {
     }
 
     public Component getTitle() {
-        return Component.translatable("sharingiscaring.gift.menu", this.owner == null? "?" : this.level.getPlayerByUUID(owner), this.target == null? "?" : this.level.getPlayerByUUID(this.target));
+        return Component.translatable("sharingiscaring.gift.menu", this.owner == null? "?" : this.level.getPlayerByUUID(owner).getName(), this.target == null? "?" : this.level.getPlayerByUUID(this.target).getName());
     }
 
     public UUID getOwner() {

@@ -56,7 +56,7 @@ public class Gift extends Block implements EntityBlock {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof GiftBlockEntity gift) {
                 if ((!pPlayer.getUUID().equals(gift.getOwner()) && gift.getOwner() != null) || (!pPlayer.getUUID().equals(gift.getTarget()) && gift.getTarget() != null)) {
-                    MutableComponent message = Component.translatable("sharingiscaring.message", gift.getOwner() == null? "" : pLevel.getPlayerByUUID(gift.getOwner()), gift.getTarget() == null? "" : pLevel.getPlayerByUUID(gift.getTarget()));
+                    MutableComponent message = Component.translatable("sharingiscaring.message", gift.getOwner() == null? "?" : pLevel.getPlayerByUUID(gift.getOwner()).getName(), gift.getTarget() == null? "?" : pLevel.getPlayerByUUID(gift.getTarget()).getName());
                     pPlayer.sendSystemMessage(message);
                     return InteractionResult.FAIL;
                 }
