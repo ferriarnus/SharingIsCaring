@@ -22,6 +22,6 @@ public class BlockRegistry {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static RegistryObject<Gift> GIFT = BLOCKS.register("gift", () -> new Gift(BlockBehaviour.Properties.of(Material.WOOD)));
+    public static RegistryObject<Gift> GIFT = BLOCKS.register("gift", () -> new Gift(BlockBehaviour.Properties.of(Material.WOOD).noOcclusion()));
     public static RegistryObject<BlockItem> GIFT_ITEM = ITEMS.register("gift", () -> new GiftItem(GIFT.get(), new Item.Properties()));
 }
