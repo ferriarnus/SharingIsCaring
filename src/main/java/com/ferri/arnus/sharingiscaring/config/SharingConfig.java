@@ -10,7 +10,7 @@ public class SharingConfig {
 
     static {
         CANBREAK = BUILDER.comment("Allows any player to break gifts. Grief prevention for a server").define("Can break other gifts", false);
-        UNKNOWNPLAYERS = BUILDER.comment("Allows gifts to be made for any possible player name, not just the ones on the server.").define("Unknown Players", false);
+        UNKNOWNPLAYERS = BUILDER.comment("Allows gifts to be made for any possible player name, not just the ones on the server. (not working currently)").define("Unknown Players", false);
         SPEC = BUILDER.build();
     }
 }

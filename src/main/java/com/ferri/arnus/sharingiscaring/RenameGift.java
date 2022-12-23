@@ -29,7 +29,7 @@ public class RenameGift {
         if (event.getLeft().is(BlockRegistry.GIFT_ITEM.get()) && event.getName() != null && !event.getName().isEmpty()) {
             List<? extends Player> players = event.getPlayer().level.players();
             for (Player player: players) {
-                if ((SharingConfig.UNKNOWNPLAYERS.get() || player.getDisplayName().getString().equals(event.getName())) && !event.getPlayer().getUUID().equals(player.getUUID())) {
+                if ((player.getDisplayName().getString().equals(event.getName())) && !event.getPlayer().getUUID().equals(player.getUUID())) {
                     if (gift.getOrCreateTag().contains("BlockEntityTag")) {
                         gift.getOrCreateTag().getCompound("BlockEntityTag").putUUID("target", player.getUUID());
                     } else {

@@ -3,6 +3,7 @@ package com.ferri.arnus.sharingiscaring.block;
 import com.ferri.arnus.sharingiscaring.SharingIsCaring;
 import com.ferri.arnus.sharingiscaring.item.GiftItem;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -23,5 +24,5 @@ public class BlockRegistry {
     }
 
     public static RegistryObject<Gift> GIFT = BLOCKS.register("gift", () -> new Gift(BlockBehaviour.Properties.of(Material.WOOD).noOcclusion()));
-    public static RegistryObject<BlockItem> GIFT_ITEM = ITEMS.register("gift", () -> new GiftItem(GIFT.get(), new Item.Properties()));
+    public static RegistryObject<BlockItem> GIFT_ITEM = ITEMS.register("gift", () -> new GiftItem(GIFT.get(), new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 }
